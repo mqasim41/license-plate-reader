@@ -23,7 +23,7 @@ class PrepareBaseModel:
     @staticmethod
     def _prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
 
-        model.summary()
+        
         return model
     
 

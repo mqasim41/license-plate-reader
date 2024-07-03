@@ -14,9 +14,9 @@ class Training:
 
     
     def get_base_model(self):
-        self.model = YOLO(
-            self.config.updated_base_model_path
-        )
+        self.model = YOLO()
+        self.model.load_state_dict(torch.load(self.config.updated_base_model_path))
+       
 
     
     def train(self):
@@ -25,5 +25,6 @@ class Training:
             data="config/yolo_config.yaml",
             epochs=self.config.params_epochs,
         )
+    
 
 
