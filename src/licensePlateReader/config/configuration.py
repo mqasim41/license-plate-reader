@@ -61,6 +61,7 @@ class ConfigurationManager:
             root_dir=Path(training.root_dir),
             trained_model_path=Path(training.trained_model_path),
             updated_base_model_path=Path(prepare_base_model.updated_base_model_path),
+            mlflow_uri="https://dagshub.com/mqasim41/license-plate-reader.mlflow",
             training_data=Path(training_data),
             params_epochs=params.EPOCHS,
             params_batch_size=params.BATCH_SIZE,
@@ -73,7 +74,6 @@ class ConfigurationManager:
         eval_config = EvaluationConfig(
             path_of_model="runs/detect/train/weights/best.pt",
             training_data="artifacts/data_ingestion/data",
-            mlflow_uri="https://dagshub.com/mqasim41/license-plate-reader.mlflow",
             all_params=self.params,
             params_image_size=self.params.IMAGE_SIZE,
             params_batch_size=self.params.BATCH_SIZE,
