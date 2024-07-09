@@ -32,6 +32,7 @@ class Training:
         self.model.train(
             data="config/yolo_config.yaml",
             epochs=self.config.params_epochs,
+            imgsz=self.config.params_image_size,
         )
 
     

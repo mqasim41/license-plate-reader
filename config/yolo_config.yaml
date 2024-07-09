@@ -1,4 +1,4 @@
-path: /home/qasim/Projects/license-plate-reader/artifacts/data_ingestion/data
+path: /content/license-plate-reader/artifacts/data_ingestion/data
 train: images/train
 val: images/train
 names:
