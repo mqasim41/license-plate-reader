@@ -1,47 +1,25 @@
-import os
-import urllib.request as request
-from zipfile import ZipFile
-from pathlib import Path
-from licensePlateReader.config.configuration import PrepareBaseModelConfig
-import tensorflow as tf
-import torch
-from ultralytics import YOLO
-
+from licensePlateReader.config.configuration import BaseModelConfig
+from ultralytics import settings
+import dagshub
+import mlflow
+from licensePlateReader.utils.common import download_mlflow_artifact
 
 class PrepareBaseModel:
-    def __init__(self, config: PrepareBaseModelConfig):
+    def __init__(self, config: BaseModelConfig):
         self.config = config
 
+    def set_mlflow_uri(self):
+        settings.update({"mlflow": True})
+        dagshub.init(repo_owner='mqasim41', repo_name='license-plate-reader', mlflow=True)
+        mlflow.set_registry_uri(self.config.mlflow_uri)
     
     def get_base_model(self):
-        self.model = YOLO("yolov8n.pt") 
-
-        self.save_model(path=self.config.base_model_path, model=self.model)
+        self.set_mlflow_uri()
+        download_mlflow_artifact(self.config.source_URL,local_dir=self.config.base_model_path)
 
 
     
-    @staticmethod
-    def _prepare_full_model(model, classes, freeze_all, freeze_till, learning_rate):
-
-        
-        return model
-    
-
-    def update_base_model(self):
-        self.full_model = self._prepare_full_model(
-            model=self.model,
-            classes=self.config.params_classes,
-            freeze_all=True,
-            freeze_till=None,
-            learning_rate=self.config.params_learning_rate
-        )
-
-        self.save_model(path=self.config.updated_base_model_path, model=self.full_model)
-    
 
 
-    @staticmethod
-    def save_model(path: Path, model: tf.keras.Model):
-        torch.save(model.state_dict(), path)
 
 

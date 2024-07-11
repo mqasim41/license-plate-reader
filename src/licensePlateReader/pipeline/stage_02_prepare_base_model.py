@@ -16,7 +16,6 @@ class PrepareBaseModelTrainingPipeline:
         prepare_base_model_config = config.get_prepare_base_model_config()
         prepare_base_model = PrepareBaseModel(config=prepare_base_model_config)
         prepare_base_model.get_base_model()
-        prepare_base_model.update_base_model()
 
 
 

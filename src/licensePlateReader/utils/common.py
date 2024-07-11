@@ -9,8 +9,9 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 import base64
-
-
+import gdown
+import zipfile
+import mlflow
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -135,4 +136,54 @@ def decodeImage(imgstring, fileName):
 def encodeImageIntoBase64(croppedImagePath):
     with open(croppedImagePath, "rb") as f:
         return base64.b64encode(f.read())
+    
+
+def download_file(source_url, local_data_file, root_dir):
+    '''
+    Fetch data from the url
+    '''
+
+    try: 
+        dataset_url = source_url
+        zip_download_dir = local_data_file
+        os.makedirs(root_dir, exist_ok=True)
+        logger.info(f"Downloading data from {dataset_url} into file {zip_download_dir}")
+
+        file_id = dataset_url.split("/")[-2]
+        prefix = 'https://drive.google.com/uc?/export=download&id='
+        gdown.download(prefix+file_id,zip_download_dir)
+
+        logger.info(f"Downloaded data from {dataset_url} into file {zip_download_dir}")
+
+    except Exception as e:
+        raise e
+
+def extract_zip_file(unzip_dir, local_data_file):
+    """
+    zip_file_path: str
+    Extracts the zip file into the data directory
+    Function returns None
+    """
+    unzip_path = unzip_dir
+    os.makedirs(unzip_path, exist_ok=True)
+    with zipfile.ZipFile(local_data_file, 'r') as zip_ref:
+        zip_ref.extractall(unzip_path)
+
+def download_mlflow_artifact(run_id, artifact_path='weights/best.pt', local_dir=None):
+    """
+    Downloads an artifact from an MLflow run to a specified local directory.
+
+    Parameters:
+    - run_id: str, the ID of the MLflow run.
+    - artifact_path: str, the relative path to the artifact within the run.
+    - local_dir: str, optional, the local directory where the artifact should be downloaded. If not specified, the artifact will be downloaded to the current working directory.
+
+    Returns:
+    - local_path: str, the local path where the artifact was downloaded.
+    """
+    if local_dir:
+        local_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path=artifact_path, dst_path=local_dir)
+    else:
+        local_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path=artifact_path)
+    
 
