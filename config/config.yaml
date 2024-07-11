@@ -3,9 +3,20 @@ artifacts_root: artifacts
 
 data_ingestion:
   root_dir: artifacts/data_ingestion
-  source_URL: https://drive.google.com/file/d/1jU4AJW5JUKNFl1cBzsWSRk8fzlS5QV21/view?usp=drive_link
+  video_dir: artifacts/data_ingestion/video
+  frames_dir: artifacts/data_ingestion/video/frames
+  from_video: True
+  lpd_path: models/lpd/license_plate_detector.pt
+  source_URL: https://drive.google.com/file/d/1btsWnfgit7vpBszgWArs0nlYFnJHLqiv/view?usp=sharing
   local_data_file: artifacts/data_ingestion/data.zip
+  local_video_file: artifacts/data_ingestion/video/video.mp4
   unzip_dir: artifacts/data_ingestion
+
+data_annotation:
+  frames_dir: artifacts/data_ingestion/video/frames
+  data_save_dir: artifacts/data_ingestion/data
+  image_size: [640, 640]
+
 
 
 prepare_base_model:

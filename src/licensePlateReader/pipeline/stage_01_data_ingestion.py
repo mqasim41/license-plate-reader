@@ -12,8 +12,8 @@ class DataIngestionTrainingPipeline:
         config = ConfigurationManager()
         data_ingestion_config = config.get_data_ingestion_config()
         data_ingestion = DataIngestion(config=data_ingestion_config)
-        data_ingestion.download__data_file()
-        data_ingestion.extract__data_zip_file()
+        data_ingestion.download_data_file()
+        data_ingestion.extract_data_zip_file()
         
         
 

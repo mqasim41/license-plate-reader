@@ -12,6 +12,8 @@ import base64
 import gdown
 import zipfile
 import mlflow
+from ultralytics import YOLO
+import torch
 
 @ensure_annotations
 def read_yaml(path_to_yaml: Path) -> ConfigBox:
@@ -185,5 +187,18 @@ def download_mlflow_artifact(run_id, artifact_path='weights/best.pt', local_dir=
         local_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path=artifact_path, dst_path=local_dir)
     else:
         local_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path=artifact_path)
+
+
+def load_yolo_model(model_path, device='cpu'):
+    """
+    Load YOLO model from the specified path and move it to the specified device (cpu or cuda).
+    """
+    model = YOLO(model_path)
+    if device == 'cuda' and torch.cuda.is_available():
+        model.cuda()
+    else:
+        model.cpu()
+    return model
+
     
 

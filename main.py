@@ -3,6 +3,7 @@ from licensePlateReader.pipeline.stage_01_data_ingestion import DataIngestionTra
 from licensePlateReader.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingPipeline
 from licensePlateReader.pipeline.stage_03_model_trainer import ModelTrainingPipeline
 from licensePlateReader.pipeline.stage_04_model_evaluation import EvaluationPipeline
+from licensePlateReader.pipeline.stage_015_data_annotation import DataAnnotationTrainingPipeline
 
 
 
@@ -19,6 +20,17 @@ except Exception as e:
     raise e
 
 
+STAGE_NAME = "Data Annotation stage"
+
+try:
+    logger.info(f">>>>>> stage {STAGE_NAME} started <<<<<<")
+    obj = DataAnnotationTrainingPipeline()
+    obj.main()
+    logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+except Exception as e:
+    logger.exception(e)
+    raise e
+
 
 STAGE_NAME = "Prepare base model"
 try: 
@@ -30,8 +42,6 @@ try:
 except Exception as e:
         logger.exception(e)
         raise e
-
-
 
 
 STAGE_NAME = "Training"
@@ -46,6 +56,7 @@ except Exception as e:
         raise e
 
 
+
 STAGE_NAME = "Evaluation stage"
 try:
    logger.info(f"*******************")
@@ -57,3 +68,4 @@ try:
 except Exception as e:
         logger.exception(e)
         raise e
+

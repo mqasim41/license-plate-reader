@@ -1,7 +1,10 @@
 ultralytics
+paddlepaddle-gpu
+paddleocr
+opencv-python
 dagshub
 torch
-pandas 
+pandas
 gdown
 dvc
 mlflow==2.2.2

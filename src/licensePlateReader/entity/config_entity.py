@@ -5,10 +5,21 @@ from pathlib import Path
 @dataclass(frozen=True)
 class DataIngestionConfig:
     root_dir: Path
+    video_dir: Path
+    frames_dir: Path
+    from_video: bool
+    lpd_path: Path
     source_URL: str
+    local_video_file: Path
     local_data_file: Path
     unzip_dir: Path
 
+@dataclass(frozen=True)
+class DataAnnotationConfig:
+    frames_dir: Path
+    data_save_dir: Path
+    image_size: list
+    
 
 @dataclass(frozen=True)
 class BaseModelConfig:
@@ -21,7 +32,6 @@ class BaseModelConfig:
 
 @dataclass(frozen=True)
 class TrainingConfig:
-    root_dir: Path
     base_model_path: Path
     mlflow_uri: str
     format: str

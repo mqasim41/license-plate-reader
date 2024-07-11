@@ -1,7 +1,7 @@
 import os
 from licensePlateReader.constants import *
 from licensePlateReader.entity.config_entity import DataIngestionConfig, BaseModelConfig
-from licensePlateReader.entity.config_entity import TrainingConfig,EvaluationConfig
+from licensePlateReader.entity.config_entity import TrainingConfig,EvaluationConfig, DataAnnotationConfig
 from licensePlateReader.utils.common import read_yaml, create_directories
 
 
@@ -22,10 +22,17 @@ class ConfigurationManager:
         config = self.config.data_ingestion
 
         create_directories([config.root_dir])
-
+        create_directories([
+            Path(config.video_dir)
+        ])
         data_ingestion_config = DataIngestionConfig(
             root_dir=config.root_dir,
+            video_dir= config.video_dir,
+            from_video=config.from_video,
+            lpd_path=config.lpd_path,
+            frames_dir=config.frames_dir,
             source_URL=config.source_URL,
+            local_video_file=config.local_video_file,
             local_data_file=config.local_data_file,
             unzip_dir=config.unzip_dir 
         )
@@ -49,9 +56,6 @@ class ConfigurationManager:
         training = self.config.training
         prepare_base_model = self.config.prepare_base_model
         params = self.params
-        create_directories([
-            Path(training.root_dir)
-        ])
 
         training_config = TrainingConfig(
             base_model_path=Path(prepare_base_model.updated_base_model_path),
@@ -69,4 +73,13 @@ class ConfigurationManager:
             training_data="artifacts/data_ingestion/data",
         )
         return eval_config
+
+    def get_data_annotation_config(self)-> DataAnnotationConfig:
+        annotation = self.config.data_annotation
+        annotation_config = DataAnnotationConfig(
+            frames_dir=annotation.frames_dir,
+            data_save_dir=annotation.data_save_dir,
+            image_size=annotation.image_size,
+        )
+        return annotation_config
       
