@@ -5,9 +5,9 @@ data_ingestion:
   root_dir: artifacts/data_ingestion
   video_dir: artifacts/data_ingestion/video
   frames_dir: artifacts/data_ingestion/video/frames
-  from_video: True
+  from_video: False
   lpd_path: models/lpd/license_plate_detector.pt
-  source_URL: https://drive.google.com/file/d/1btsWnfgit7vpBszgWArs0nlYFnJHLqiv/view?usp=sharing
+  source_URL: https://drive.google.com/file/d/1jU4AJW5JUKNFl1cBzsWSRk8fzlS5QV21/view?usp=drive_link
   local_data_file: artifacts/data_ingestion/data.zip
   local_video_file: artifacts/data_ingestion/video/video.mp4
   unzip_dir: artifacts/data_ingestion

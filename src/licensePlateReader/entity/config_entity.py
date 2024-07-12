@@ -19,6 +19,7 @@ class DataAnnotationConfig:
     frames_dir: Path
     data_save_dir: Path
     image_size: list
+    from_video: bool
     
 
 @dataclass(frozen=True)
@@ -44,5 +45,5 @@ class TrainingConfig:
 class EvaluationConfig:
     path_of_model: Path
     training_data: Path
-    from_video: bool
+    
 

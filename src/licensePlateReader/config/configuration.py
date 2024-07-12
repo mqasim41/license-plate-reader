@@ -81,7 +81,7 @@ class ConfigurationManager:
             frames_dir=annotation.frames_dir,
             data_save_dir=annotation.data_save_dir,
             image_size=annotation.image_size,
-            from_videp=ingestion.from_video,
+            from_video=ingestion.from_video,
         )
         return annotation_config
       
