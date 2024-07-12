@@ -3,7 +3,9 @@ from ultralytics import YOLO
 from ultralytics import settings
 import dagshub
 import mlflow
-
+import logging
+from ultralytics import logger
+logger.setLevel(logging.ERROR)
 class Training:
     def __init__(self, config: TrainingConfig):
         self.config = config

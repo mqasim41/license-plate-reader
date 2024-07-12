@@ -5,6 +5,10 @@ from licensePlateReader import logger
 from licensePlateReader.entity.config_entity import DataAnnotationConfig
 from paddleocr import PaddleOCR, draw_ocr
 import matplotlib.pyplot as plt
+import logging
+
+logging.getLogger('ppocr').setLevel(logging.ERROR)
+logging.getLogger('paddleocr').setLevel(logging.ERROR)
 
 class DataAnnotation:
     def __init__(self, config: DataAnnotationConfig):
@@ -114,6 +118,9 @@ class DataAnnotation:
         """
         Processes all image files in a folder for OCR.
         """
+        if self.config.from_video == False:
+            return
+
         target_size = (self.config.image_size[0], self.config.image_size[1])
         
         all_files = [f for f in os.listdir(self.config.frames_dir) if os.path.isfile(os.path.join(self.config.frames_dir, f)) and f.lower().endswith(('.png', '.jpg', '.jpeg'))]

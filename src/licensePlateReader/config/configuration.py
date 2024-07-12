@@ -76,10 +76,12 @@ class ConfigurationManager:
 
     def get_data_annotation_config(self)-> DataAnnotationConfig:
         annotation = self.config.data_annotation
+        ingestion = self.config.data_ingestion
         annotation_config = DataAnnotationConfig(
             frames_dir=annotation.frames_dir,
             data_save_dir=annotation.data_save_dir,
             image_size=annotation.image_size,
+            from_videp=ingestion.from_video,
         )
         return annotation_config
       

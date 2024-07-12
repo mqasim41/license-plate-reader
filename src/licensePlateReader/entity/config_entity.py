@@ -44,4 +44,5 @@ class TrainingConfig:
 class EvaluationConfig:
     path_of_model: Path
     training_data: Path
+    from_video: bool
 
