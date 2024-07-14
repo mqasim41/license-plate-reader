@@ -36,7 +36,7 @@ video_urls = [
     'https://drive.google.com/file/d/1WLeTRpN8JF9LR9WXn9xdzi3VGZyjQvFP/view?usp=sharing',
     'https://drive.google.com/file/d/15Vp7e1_i_sFons9AHk93NmfstOI4qnjz/view?usp=sharing',
               ]
-for url in range(video_urls): 
+for url in range(len(video_urls)): 
     update_yaml('config/config.yaml','data_ingestion','source_URL',video_urls[url])
     update_yaml('config/config.yaml','prepare_base_model','updated_base_model_path',model_paths[url])
     subprocess.run(["python3", "main.py"])
