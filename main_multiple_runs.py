@@ -1,5 +1,7 @@
 import subprocess
 from licensePlateReader.utils.common import update_yaml
+import shutil
+import os
 
 model_paths = [
     'yolov10m',
@@ -40,3 +42,11 @@ for url in range(len(video_urls)):
     update_yaml('config/config.yaml','data_ingestion','source_URL',video_urls[url])
     update_yaml('config/config.yaml','prepare_base_model','updated_base_model_path',model_paths[url])
     subprocess.run(["python3", "main.py"])
+
+    folder_path = 'artifacts/data_ingestion'
+    if os.path.exists(folder_path):
+        shutil.rmtree(folder_path)
+        print(f"Folder '{folder_path}' and its contents have been deleted.")
+    else:
+        print(f"Folder '{folder_path}' does not exist.")
+
