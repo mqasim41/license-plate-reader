@@ -200,5 +200,17 @@ def load_yolo_model(model_path, device='cpu'):
         model.cpu()
     return model
 
+
+def update_yaml(file_path, key, value):
+    
+    with open(file_path, 'r') as file:
+            data = yaml.safe_load(file)
+
+    # Update the key with the current value
+    data[key]['source_URL'] = value
+
+    with open(file_path, 'w') as file:
+        yaml.safe_dump(data, file)
+
     
 

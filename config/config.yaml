@@ -1,33 +1,25 @@
 artifacts_root: artifacts
-
-
-data_ingestion:
-  root_dir: artifacts/data_ingestion
-  video_dir: artifacts/data_ingestion/video
+data_annotation:
+  data_save_dir: artifacts/data_ingestion/data
   frames_dir: artifacts/data_ingestion/video/frames
-  from_video: False
-  lpd_path: models/lpd/license_plate_detector.pt
-  source_URL: https://drive.google.com/file/d/1jU4AJW5JUKNFl1cBzsWSRk8fzlS5QV21/view?usp=drive_link
+  image_size:
+  - 640
+  - 640
+data_ingestion:
+  frames_dir: artifacts/data_ingestion/video/frames
+  from_video: true
   local_data_file: artifacts/data_ingestion/data.zip
   local_video_file: artifacts/data_ingestion/video/video.mp4
+  lpd_path: models/lpd/license_plate_detector.pt
+  root_dir: artifacts/data_ingestion
+  source_URL: https://drive.google.com/file/d/1btsWnfgit7vpBszgWArs0nlYFnJHLqiv/view?usp=drive_link
   unzip_dir: artifacts/data_ingestion
-
-data_annotation:
-  frames_dir: artifacts/data_ingestion/video/frames
-  data_save_dir: artifacts/data_ingestion/data
-  image_size: [640, 640]
-
-
-
+  video_dir: artifacts/data_ingestion/video
 prepare_base_model:
+  base_model_path: artifacts/prepare_base_model
   root_dir: artifacts/prepare_base_model
   source_URL: 9903d43bb5774c12a6a314e0b04bba14
-  base_model_path: artifacts/prepare_base_model
   updated_base_model_path: artifacts/prepare_base_model/weights/best.pt
-
-
 training:
-  mlflow_uri: https://dagshub.com/mqasim41/license-plate-reader.mlflow
   format: onnx
- 
-
+  mlflow_uri: https://dagshub.com/mqasim41/license-plate-reader.mlflow

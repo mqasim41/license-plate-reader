@@ -57,6 +57,7 @@ class DataIngestion:
         if self.config.source_URL == -1:
             return
         else:
+            logger.info(f"Downloading data from {self.config.source_URL} into file {self.config.video_dir}")
             if self.config.from_video == True:
                 download_file(self.config.source_URL, self.config.local_video_file, self.config.video_dir)
                 self.process_video_yolo()
@@ -70,12 +71,13 @@ class DataIngestion:
         Extracts the zip file into the data directory
         Function returns None
         """
+        
         if self.config.source_URL == -1:
             return
         else:
             if self.config.from_video == True:
                 return
             else:
-                extract_zip_file(self.config.frames_dir, self.config.local_data_file)
+                extract_zip_file(self.config.root_dir, self.config.local_data_file)
 
 

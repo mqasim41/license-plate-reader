@@ -1,6 +1,6 @@
-path: /home/qasim/Projects/license-plate-reader/artifacts/data_ingestion/data
+path: ../artifacts/data_ingestion/data
 train: images/train
-val: images/train
+val: images/val
 names:
   0: A
   1: B
