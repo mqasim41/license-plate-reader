@@ -2,7 +2,7 @@ import subprocess
 from licensePlateReader.utils.common import update_yaml
 
 model_paths = [
-    'artifacts/prepare_base_model/weights/best.pt',
+    'yolov10m',
     'runs/detect/train/weights/best.pt',
     'runs/detect/train3/weights/best.pt',
     'runs/detect/train4/weights/best.pt',
