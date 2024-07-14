@@ -4,7 +4,6 @@ from licensePlateReader.utils.common import update_yaml
 model_paths = [
     'artifacts/prepare_base_model/weights/best.pt',
     'runs/detect/train/weights/best.pt',
-    'runs/detect/train2/weights/best.pt',
     'runs/detect/train3/weights/best.pt',
     'runs/detect/train4/weights/best.pt',
     'runs/detect/train5/weights/best.pt',
@@ -17,6 +16,7 @@ model_paths = [
     'runs/detect/train12/weights/best.pt',
     'runs/detect/train13/weights/best.pt',
     'runs/detect/train14/weights/best.pt',
+    'runs/detect/train15/weights/best.pt',
 ]
 
 video_urls = [
