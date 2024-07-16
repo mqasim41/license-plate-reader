@@ -8,13 +8,11 @@ class Training:
         self.config = config
 
     def get_base_model(self):
-        self.model = YOLO(self.config.base_model_path)
+        self.model = YOLO('yolov10n')
         
     
     def set_mlflow_uri(self):
-        settings.update({"mlflow": True})
-        dagshub.init(repo_owner='mqasim41', repo_name='license-plate-reader', mlflow=True)
-        mlflow.set_registry_uri(self.config.mlflow_uri)
+        pass
 
     def train(self):
         self.model.train(

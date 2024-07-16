@@ -10,12 +10,9 @@ class PrepareBaseModel:
 
     def set_mlflow_uri(self):
         settings.update({"mlflow": True})
-        dagshub.init(repo_owner='mqasim41', repo_name='license-plate-reader', mlflow=True)
-        mlflow.set_registry_uri(self.config.mlflow_uri)
     
     def get_base_model(self):
-        self.set_mlflow_uri()
-        download_mlflow_artifact(self.config.source_URL,local_dir=self.config.base_model_path)
+        pass
 
 
     
