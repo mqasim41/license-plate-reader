@@ -12,7 +12,7 @@ data_ingestion:
   local_video_file: artifacts/data_ingestion/video/video.mp4
   lpd_path: models/lpd/license_plate_detector.pt
   root_dir: artifacts/data_ingestion
-  source_URL: https://drive.google.com/file/d/1tx9mX9Z1a9Jv3uW8WQFv5g7e2weDDA4j/view?usp=drive_link
+  source_URL: https://drive.google.com/file/d/156EkmC1UCjVI4Eit4A_ItuJzXvuqMoyJ/view?usp=sharing
   unzip_dir: artifacts/data_ingestion
   video_dir: artifacts/data_ingestion/video
 prepare_base_model:
